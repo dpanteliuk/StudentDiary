@@ -1,5 +1,0 @@
-C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\bin\Debug\StudentDiary.Database.dacpac
-C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\bin\Debug\StudentDiary.Database.dll
-C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\bin\Debug\StudentDiary.Database.pdb
-C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\obj\Debug\StudentDiary.Database.dll
-C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\obj\Debug\StudentDiary.Database.pdb
