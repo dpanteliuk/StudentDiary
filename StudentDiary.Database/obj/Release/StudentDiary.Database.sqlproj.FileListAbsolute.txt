@@ -1,0 +1,9 @@
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\bin\Release\StudentDiary.Database.dacpac
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\bin\Release\StudentDiary.Database.dll
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\bin\Release\StudentDiary.Database.pdb
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\obj\Release\Model.xml
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\obj\Release\refactor.xml
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\obj\Release\postdeploy.sql
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\obj\Release\predeploy.sql
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\obj\Release\StudentDiary.Database.dll
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Database\obj\Release\StudentDiary.Database.pdb

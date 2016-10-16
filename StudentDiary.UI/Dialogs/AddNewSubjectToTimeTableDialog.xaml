@@ -1,0 +1,41 @@
+﻿<Window x:Class="StudentDiary.UI.Dialogs.AddNewSubjectToTimeTableDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentDiary.UI"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Icon="../Resources/titleicon.png"
+        Title="Enter new subject info" Height="300" Width="310">
+    <Grid HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Grid.Row="0">Please select day you want add subject to :</TextBlock>
+            <ComboBox Grid.Row="1" x:Name="AwailableDaysList"  Margin="5" />
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Grid.Row="2">Please select subject :</TextBlock>
+            <ComboBox  Grid.Row="3" x:Name="AwailableSubjectsList" Margin="5">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Grid.Row="4">Please select pair type :</TextBlock>
+            <ComboBox Grid.Row="5" x:Name="AwailablePairTypesList" Margin="5">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding TypeName}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button Grid.Row="6" Click="AddNewSubject" Content="Add" Margin="5" />
+        </Grid>
+</Window>

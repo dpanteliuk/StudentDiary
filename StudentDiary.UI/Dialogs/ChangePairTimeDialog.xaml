@@ -1,0 +1,25 @@
+﻿<Window x:Class="StudentDiary.UI.Dialogs.ChangePairTimeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        WindowStartupLocation="CenterScreen"
+        Icon="../Resources/titleicon.png"
+        Title="Enter new times" Height="222.288" Width="223.017">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0">Select pair start time :</TextBlock>
+        <xctk:TimePicker FontSize="12" x:Name="StartTimePicker" Grid.Row="1" Margin="53,0,58,10"></xctk:TimePicker>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2">Select pair end time :</TextBlock>
+        <xctk:TimePicker FontSize="12" x:Name="EndTimePicker"  Grid.Row="3" Margin="53,0,58,10"></xctk:TimePicker>
+        <Button Margin="8" Click="ChangeTime" Grid.Row="4">Ok</Button>
+    </Grid>
+</Window>

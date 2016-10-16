@@ -1,0 +1,258 @@
+﻿<Window x:Class="StudentDiary.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentDiary.UI"
+        xmlns:userControls="clr-namespace:StudentDiary.UI.UserControls"
+        xmlns:uiCommands="clr-namespace:StudentDiary.UI.UICommands"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="Student Diary" SizeToContent="Width" ResizeMode="NoResize" MinWidth="800" Height="480" Icon="Resources/titleicon.png"><!--Width="905"-->
+    <Window.CommandBindings>
+        <CommandBinding Command="uiCommands:TeacherCommands.CmdDeleteTeacher" CanExecute="IsTeacherSelected" Executed="DeleteTeacher"></CommandBinding>
+        <CommandBinding Command="uiCommands:TeacherCommands.CmdModifyTeacher" CanExecute="IsTeacherSelected" Executed="ModifyTeacher"></CommandBinding>
+        <CommandBinding Command="uiCommands:SubjectCommands.CmdGetSubjectTeacher" CanExecute="IsSubjectSelected" Executed="GetSubjectTeacher"></CommandBinding>
+        <CommandBinding Command="uiCommands:SubjectCommands.CmdDeleteSubject" CanExecute="IsSubjectSelected" Executed="DeleteSubject"></CommandBinding>
+        <CommandBinding Command="uiCommands:SubjectCommands.CmdGetSubjectTasks" CanExecute="IsSubjectSelected" Executed="GetSubjectTasks"></CommandBinding>
+        <CommandBinding Command="uiCommands:SubjectCommands.CmdModifySubject" CanExecute="IsSubjectSelected" Executed="ModifySubject"></CommandBinding>
+        <CommandBinding Command="uiCommands:TimeTableCommands.CmdDeleteTimeTableSubject" CanExecute="IsTimeTableSubjectSelectedToRemove" Executed="RemoveSelectedTimeTableSubject"></CommandBinding>
+        <CommandBinding Command="uiCommands:TimeTableCommands.CmdModifyTimeTableSubject" CanExecute="IsTimeTableSubjectSelected" Executed="ModifySelectedTimeTableSubject"></CommandBinding>
+        <CommandBinding Command="uiCommands:TimeTableCommands.CmdTimeTableGetSubjectInfo" CanExecute="IsTimeTableSubjectSelectedToRemove" Executed="GetTimeTableSubjectInfo"></CommandBinding>
+        <CommandBinding Command="uiCommands:TimeTableCommands.CmdTimeTableGetTeacherInfo" CanExecute="IsTimeTableSubjectSelectedToRemove" Executed="GetTimeTableTeacherInfo"></CommandBinding>
+        <CommandBinding Command="uiCommands:TimeTableCommands.CmdTimeTableGetTasksInfo" CanExecute="IsTimeTableSubjectSelectedToRemove" Executed="GetTimeTableTasksInfo"></CommandBinding>
+        <CommandBinding Command="uiCommands:TimeTableCommands.CmdChangeTimes" CanExecute="IsTimeSelected" Executed="ChangeTime"></CommandBinding>
+        <CommandBinding Command="uiCommands:TaskCommands.CmdDeleteTask" CanExecute="IsTaskSelected" Executed="DeleteTask"></CommandBinding>
+        <CommandBinding Command="uiCommands:TaskCommands.CmdModifyTask" CanExecute="IsTaskSelected" Executed="ModifyTask"></CommandBinding>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ListBox SelectionMode="Single" x:Name="GeneralMenu" Margin="2" >
+
+            <ListBox.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Padding" Value="4"/>
+                </Style>
+            </ListBox.Resources>
+
+            <ListBoxItem>
+                <ListBoxItem.Tag>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Height="40" Background="LightGray" Orientation="Horizontal">
+                            <TextBlock Text="Time Table for week №" FontSize="20" FontFamily="Georgia" Padding="10 10 0 10"></TextBlock>
+                            <TextBlock Name="WeekNumber" Padding="2 10"  FontSize="20" FontFamily="Georgia" Text="10"></TextBlock>
+                            <TextBlock Text="Start Date:" FontSize="20" Foreground="DarkBlue" FontFamily="Georgia" Padding="10 10 0 10"></TextBlock>
+                            <TextBlock Name="WeekStartDate" Padding="2 10"  FontSize="20" FontFamily="Georgia"></TextBlock>
+                            <TextBlock Text="End Date:" FontSize="20" Foreground="DarkBlue" FontFamily="Georgia" Padding="10 10 0 10"></TextBlock>
+                            <TextBlock Name="WeekEndDate" Padding="2 10"  FontSize="20" FontFamily="Georgia"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="10 0 5 0" VerticalAlignment="Center" FontSize="15">Semester #</TextBlock>
+                            <ComboBox SelectionChanged="ChangeSemester" Margin="5" Width="75" Name="Semesters">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Padding="2" FontSize="13" Text="{Binding SemesterNumber}"></TextBlock>
+                                            <TextBlock Padding="2" FontSize="13" Text="{Binding YearValue, StringFormat=', {0}'}"></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button Margin="5 5" Click="CreateNewSemester" Padding="5 0" >Create semester</Button>
+                            <Button Margin="5 5" Click="DeleteSemester" Padding="5 0" >Delete semester</Button>
+                            <Button Margin="5 5" HorizontalAlignment="Right" Click="GetPreviousWeek" Content="&lt;- Previous week" Height="30" Width="130"></Button>
+                            <Button Margin="5 5" HorizontalAlignment="Right" Click="GetNextWeek" Content="Next week -&gt;" Height="30" Width="130"/>
+                        </StackPanel>
+                        
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <StackPanel Background="WhiteSmoke" Orientation="Vertical">
+                                <Label HorizontalAlignment="Center">Times</Label>
+                                <ListBox Margin="5" Background="AliceBlue" Name="SubjectTimes">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Margin="0 0 2 0" FontSize="12" Text="{Binding PairStart,StringFormat=hh\\:mm}" />
+                                                <TextBlock FontSize="12" Text="-"/>
+                                                <TextBlock FontSize="12" Text="{Binding PairEnd,StringFormat=hh\\:mm}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                            <userControls:TimeTableControl x:Name="SubjectControl"/>
+                            <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                                <Button Click="AddNewScheduleColumn" Height="70" BorderThickness="0" Background="White">
+                                      <Image Source="Resources/plus.ico"></Image> 
+                                </Button>
+                                <Button Click="DeleteScheduleColumn" Height="70" BorderThickness="0" Background="White">
+                                       <Image RenderTransformOrigin="0.5,0.5" Source="Resources/plus.ico"> 
+                                           <Image.RenderTransform>
+                                               <RotateTransform  Angle="45"></RotateTransform>
+                                           </Image.RenderTransform>
+                                       </Image>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Button Name="SubjectInfo" Command="uiCommands:TimeTableCommands.CmdTimeTableGetSubjectInfo" Margin="10" Padding="5" Content="Subject Info"></Button>
+                                <Button Name="TeacherInfo" Command="uiCommands:TimeTableCommands.CmdTimeTableGetTeacherInfo" Padding="5" Margin="10" Content="Teacher Info"></Button>
+                                <Button Name="SubjectTasks" Command="uiCommands:TimeTableCommands.CmdTimeTableGetTasksInfo" Padding="5" Margin="10" Content="Subject Tasks"></Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Button Margin="10" Padding="5" Content="Remove selected subject" Command="uiCommands:TimeTableCommands.CmdDeleteTimeTableSubject"></Button>
+                                <Button Margin="10" Padding="5" Command="uiCommands:TimeTableCommands.CmdModifyTimeTableSubject" Content="Modify selected subject"></Button>
+                                <Button Margin="10" Padding="5" Click="AddNewTimeTableSubject" Content="Add new subject"></Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Button Margin="10" Padding="5" Content="Adjust selected times" Command="uiCommands:TimeTableCommands.CmdChangeTimes"></Button>
+                            </StackPanel>
+                            <StackPanel  Orientation="Vertical">
+                                <TextBlock Margin="0 10 0 0" Padding="5" FontSize="14" Name="TimeTableDescriptionType" />
+                                <TextBlock Padding="5" FontSize="14" Name="TimeTableDescriptionName" />
+                                <TextBlock Padding="5" FontSize="14" Name="TimeTableDescriptionTeacher" />
+                                <TextBlock Padding="5" FontSize="14" Name="TimeTableDescriptionNuberOfTasks" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </ListBoxItem.Tag>
+                <TextBlock Text="TimeTable"/>
+            </ListBoxItem>
+
+            <ListBoxItem Name="SubjectsTab">
+                <ListBoxItem.Tag>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Subjects" FontSize="20" FontFamily="Georgia" Height="40" Padding="10" Background="LightGray"></TextBlock>
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Padding="19 15 10 0" FontSize="17">List of all subjects :</TextBlock>
+
+                                <ListBox SelectionChanged="SubjectList_Selected" Name="SubjectList" Width="250" MinHeight="250" Background="AliceBlue" Height="auto" Margin="20">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Button Command="uiCommands:SubjectCommands.CmdGetSubjectTeacher" Grid.Row="0" Margin="5 55 5 5"  Content="Subject Teacher" Height="30"/>
+                                    <Button Command="uiCommands:SubjectCommands.CmdGetSubjectTasks" Grid.Row="1" Margin="5" Content="Subject Tasks" Height="30"/>
+                                    <Button Command="uiCommands:SubjectCommands.CmdDeleteSubject" Grid.Row="2" Margin="5" Content="Delete Subject" Height="30"/>
+                                    <Button Click="AddNewSubject" Grid.Row="3" Margin="5" Content="Add new Subject" Height="30"/>
+                                    <Button Command="uiCommands:SubjectCommands.CmdModifySubject" Grid.Row="4" Margin="5 5 5 10" Content="Modify Subject" Height="30"/>
+                                </Grid>
+                                <TextBlock Name="SubjectDescription" MinHeight="50" TextWrapping="WrapWithOverflow"  Width="250"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </ListBoxItem.Tag>
+                <TextBlock Text="Subjects"/>
+            </ListBoxItem>
+
+            <ListBoxItem Name="TasksTab">
+                <ListBoxItem.Tag>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Height="40" Background="LightGray" Orientation="Horizontal">
+                            <TextBlock Text="All Tasks" FontSize="20" FontFamily="Georgia" Padding="10 10 0 10"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <DataGrid SelectionMode="Single" MaxHeight="370" VerticalScrollBarVisibility="Auto" RowBackground="AliceBlue" SelectionChanged="TaskGrid_Selected" BorderThickness="0" Background="White" Margin="10 10 0 0" IsReadOnly="True" Name="TasksGrid" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Subject" Binding="{Binding TaskTableItemSubject.Name}"/>
+                                    <DataGridTextColumn Width="200" Header="Description" Binding="{Binding TaskTableItemTask.TaskDescription}"/>
+                                    <DataGridTextColumn Header="Dead line" Binding="{Binding TaskTableItemTask.DeadLineDate,StringFormat=yyyy-MM-dd}"/>
+                                    <DataGridTextColumn Header="Priority" Binding="{Binding TaskTableItemTask.TaskPriority}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel Orientation="Vertical">
+                                <CheckBox x:Name="CertainSubjectTasks" Checked="CertainSubjectTasks_OnChecked" Unchecked="CertainSubjectTasks_OnUnchecked" Margin="10 10 10 3" Width="150" Content="Certain subject only" />
+                                <ComboBox IsEnabled="False" Margin="10 3 10 3" Width="150" Padding="5" SelectionChanged="AwailableSubjects_OnSelectionChanged" x:Name="AwailableSubjects">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Button Margin="10 3 10 3" Click="AddNewTask" Padding="5" Width="150" Content="Add new task"/>
+                                <Button Padding="5" Margin="10 3 10 3" Command="uiCommands:TaskCommands.CmdDeleteTask" Content="Delete task"/>
+                                <Button Padding="5" Margin="10 3 10 3" Command="uiCommands:TaskCommands.CmdModifyTask" Content="Modify task"/>
+                                <TextBlock Padding="10" Width="150" TextWrapping="WrapWithOverflow" Name="TaskDescription"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </ListBoxItem.Tag>
+                <TextBlock Text="Tasks"/>
+            </ListBoxItem>
+
+            <ListBoxItem Name="TeachersTab" Selected="TeachersTabSelected">
+                <ListBoxItem.Tag>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Teachers" FontSize="20" FontFamily="Georgia" Height="40" Padding="10" Background="LightGray"></TextBlock>
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <StackPanel>
+                                <TextBlock Padding="19 15 5 0" FontSize="17">List of all teachers :</TextBlock>
+                                <ListBox Padding="5" Background="AliceBlue" x:Name="TeachersList" 
+                                     SelectionChanged="TeachersList_Selected" SelectionMode="Single" 
+                                     HorizontalAlignment="Left"  Height="300"  Margin="20 20 0 20" Width="250">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Margin="0 0 5 0" Text="{Binding FirstName}" />
+                                                <TextBlock Text="{Binding MiddleName}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                            <Border Margin="20" Padding="10 0 10 10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Width="200" Grid.Row="0" HorizontalAlignment="Center">
+                                        <Button Padding="5" Click="AddNewTeacher" Margin="0 37 0 5">Add new teacher</Button>
+                                        <Button Padding="5" Command="uiCommands:TeacherCommands.CmdDeleteTeacher" Margin="0 5">Delete teacher</Button>
+                                        <Button Padding="5" Command="uiCommands:TeacherCommands.CmdModifyTeacher" Margin="0 5 0 10">Modify teacher information</Button>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Margin="0 15 0 0" Orientation="Vertical">
+                                        <TextBlock Padding="5 0 0 0" TextWrapping="WrapWithOverflow" MaxWidth="200" Name="TeacherName"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2" Orientation="Vertical">
+                                        <TextBlock TextWrapping="WrapWithOverflow" MaxWidth="200" Padding="5 0 0 0" Name="TeacherSubjects"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="3" Orientation="Vertical">
+                                        <TextBlock TextWrapping="WrapWithOverflow" MaxWidth="200" Padding="5 0 0 0" Name="TeacherDescription"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </ListBoxItem.Tag>
+                <TextBlock Text="Teachers"/>
+            </ListBoxItem>
+        </ListBox>
+
+        <Border Grid.Column="1" BorderBrush="{x:Static SystemColors.WindowFrameBrush}" BorderThickness="1" Margin="2">
+            <ContentControl Content="{Binding SelectedItem.Tag, ElementName=GeneralMenu, UpdateSourceTrigger=PropertyChanged}"/>
+        </Border>
+    </Grid>
+</Window>
+

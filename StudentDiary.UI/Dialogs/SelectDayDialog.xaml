@@ -1,0 +1,18 @@
+﻿<Window x:Class="StudentDiary.UI.Dialogs.SelectDayDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Icon="../Resources/titleicon.png"
+        WindowStartupLocation="CenterScreen"
+        Title="Select Day" Height="104.872" Width="300">
+    <Grid HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="0" x:Name="AwailableDayList" Width="150" Margin="5" />
+        <Button Grid.Row="1" Click="AddNewDay" Content="Select" Margin="5" />
+    </Grid>
+</Window>

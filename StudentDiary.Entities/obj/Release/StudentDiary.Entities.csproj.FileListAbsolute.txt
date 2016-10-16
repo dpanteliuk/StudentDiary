@@ -1,0 +1,4 @@
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Entities\bin\Release\StudentDiary.Entities.dll
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Entities\bin\Release\StudentDiary.Entities.pdb
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Entities\obj\Release\StudentDiary.Entities.dll
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Entities\obj\Release\StudentDiary.Entities.pdb

@@ -1,0 +1,14 @@
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Repositories\obj\Debug\StudentDiary.Repositories.csprojResolveAssemblyReference.cache
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Repositories\bin\Debug\StudentDiary.Repositories.dll
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Repositories\bin\Debug\StudentDiary.Repositories.pdb
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Repositories\bin\Debug\StudentDiary.Entities.dll
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Repositories\bin\Debug\StudentDiary.Entities.pdb
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Repositories\obj\Debug\StudentDiary.Repositories.dll
+C:\Users\Jessica\Desktop\Diary\StudentDiary\StudentDiary.Repositories\obj\Debug\StudentDiary.Repositories.pdb
+E:\Diary\StudentDiary\StudentDiary.Repositories\bin\Debug\StudentDiary.Repositories.dll
+E:\Diary\StudentDiary\StudentDiary.Repositories\bin\Debug\StudentDiary.Repositories.pdb
+E:\Diary\StudentDiary\StudentDiary.Repositories\bin\Debug\StudentDiary.Entities.dll
+E:\Diary\StudentDiary\StudentDiary.Repositories\bin\Debug\StudentDiary.Entities.pdb
+E:\Diary\StudentDiary\StudentDiary.Repositories\obj\Debug\StudentDiary.Repositories.csprojResolveAssemblyReference.cache
+E:\Diary\StudentDiary\StudentDiary.Repositories\obj\Debug\StudentDiary.Repositories.dll
+E:\Diary\StudentDiary\StudentDiary.Repositories\obj\Debug\StudentDiary.Repositories.pdb
