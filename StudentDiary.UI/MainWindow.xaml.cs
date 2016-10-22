@@ -485,6 +485,7 @@ namespace StudentDiary.UI
                 DayName = dayToAdd,
                 SubjectDayDict = new Dictionary<int, SubjectScheduleItem>()
             });
+            //Review DP: You should sort _displayedShedule before loading;
             SubjectControl.LoadSchedule(_displayedSchedule);
             RefreshWeekStats();
         }
