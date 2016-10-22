@@ -35,6 +35,8 @@ namespace StudentDiary.UI.Dialogs
             AwailableSubjectsList.SelectedItem = awailableSubjects[0];
 
             var awailablePairTypes = _pairTypeRepository.GetAllPairTypes().ToList();
+            
+            //Review DP: Your should add "Free" option in AwailablePairTypesList
             AwailablePairTypesList.ItemsSource = awailablePairTypes;
             AwailablePairTypesList.SelectedItem = awailablePairTypes[0];
 
