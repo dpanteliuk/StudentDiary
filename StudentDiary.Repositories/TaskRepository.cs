@@ -114,6 +114,8 @@ namespace StudentDiary.Repositories
                     {
                         while (reader.Read())
                         {
+                        //Review DP: You should use some Parser method to preventing duplication of code.
+                        //Reading of data such as in the GetAllTasks method.
                             var task = new SubjectTask
                             {
                                 TaskId = (int)reader["TaskId"],
