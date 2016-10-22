@@ -9,6 +9,8 @@ namespace StudentDiary.UI.Dialogs
     /// <summary>
     /// Логика взаимодействия для AddNewTeacher.xaml
     /// </summary>
+    
+    //Review DP: I think it is appropriate to merge AddNewTeacherDialog and ModifyTeacherDialog in one.
     public partial class AddNewTeacherDialog
     {
         TeacherRepository teacherRepository = new TeacherRepository(ConfigurationManager.ConnectionStrings["StudentDiaryConnectionString"].ConnectionString);
